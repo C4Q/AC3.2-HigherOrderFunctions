@@ -144,7 +144,7 @@ __Usage: Use `reduce` to combine all items in a collection to create a single ne
 
 Most commonly, mathematical functions are used as examples for when you'd likely use reduce. For example, to get the sum of all of the `Int` in an array: 
 
-```
+```swift
 // The most oft used example of reduce is with math functions:
 let integerArray = [1, 1, 2, 3, 5, 8, 13, 21]
 let sum = integerArray.reduce(0, +)
@@ -201,8 +201,9 @@ let odds: [Int] = intArray.filter { (number: Int) -> Bool in
   return true
 }
 
-print(evens)
-print(odds)
+print(evens)    // [2, 4, 6, 8, 10]
+print(odds)     // [1, 3, 5, 7, 9]
+print(intArray) // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 // works with words too
 let wordsTheContainM = stringsArray.filter { (word: String) -> Bool in
@@ -212,5 +213,5 @@ let wordsTheContainM = stringsArray.filter { (word: String) -> Bool in
   return false
 }
 
-print(wordsTheContainM)
+print(wordsTheContainM) // ["might", "my", "map", "me", "maybe"]
 ```
