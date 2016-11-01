@@ -2,7 +2,7 @@
 
 import UIKit
 
-
+// ----
 // MARK: using map()
 // Usage: Use map() to loop over a collection and apply the same operation to each element in the collection.
 
@@ -19,12 +19,6 @@ for n in awaitingSquare {
   squared.append(square(x: n))
 }
 print(squared) // prints [1, 4, 9, 16, 25, 36]
-
-
-// TODO: add downfalls of prior method
-// This isn't terrible much code, but we run into a few issues:
-// 1. We have to instatiate a second array to store the new values
-// 2. We could change awaitingSquare to be a var, but then we violate a mutability rule
 
 // Let's take a look at how to do the same thing with map()
 let squaredSequence = awaitingSquare.map { (x: Int) -> Int in
@@ -106,8 +100,13 @@ let mapSeparatedValues = filenameList.flatMap { (filename: Any) -> [String : Str
   return [key : value]
   }
 
-// MARK: using reduce()
 
+let optionalInts: [Int?]  = [1, 2, nil, 4, nil, 5]
+let validInts: [Int] = optionalInts.flatMap { $0 }
+print(validInts)
+
+// ----
+// MARK: using reduce()
 // The most oft used example of reduce is with math functions:
 let integerArray = [1, 1, 2, 3, 5, 8, 13, 21]
 let sum = integerArray.reduce(0, +)
@@ -124,5 +123,38 @@ let concat = stringsArray.reduce("", { $0 + " " + $1 })
 print(concat)
 
 // let's get crazy now...
-let chained = names.map( NameFormatter.firstInitialLastName ).reduce("",  { "Honoree: " + $0 + " & " + $1 + "\n" })
+let chained = names.map( NameFormatter.firstInitialLastName ).reduce("",  { $0 + "Honoree: " + $1 + "\n" })
 print(chained)
+
+
+// ----
+// MARK: using filter()
+
+// doing some basic even/odd filtering using %
+let intArray: [Int] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+let evens: [Int] = intArray.filter { (number: Int) -> Bool in
+  if number % 2 == 0 {
+    return true
+  }
+  return false
+}
+
+let odds: [Int] = intArray.filter { (number: Int) -> Bool in
+  if number % 2 == 0 {
+    return false
+  }
+  return true
+}
+
+print(evens)
+print(odds)
+
+// works with words too
+let wordsTheContainM = stringsArray.filter { (word: String) -> Bool in
+  if word.characters.contains("m") {
+    return true
+  }
+  return false
+}
+
+print(wordsTheContainM)
